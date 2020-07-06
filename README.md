@@ -3,6 +3,8 @@
 
 all queries send throught post method.
 the result is also an object, its content is in the content field
+### result object
+* fields: message(string), isError(boolean), content(array)
 
 ## login
 * adress: /php/controllers/login-controller.php
