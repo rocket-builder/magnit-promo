@@ -23,7 +23,7 @@ the result is also an object, its content is in the content field
 this method can only be called after login
 * adress: /php/controllers/card-add-controller.php
 * arguments: range(int, only 12 numbers length)
-* result: cards(object array)
+* result: cards(int array), region(object)
 
 ## get qr code
 field id is a card id,
