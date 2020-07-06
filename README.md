@@ -1,5 +1,6 @@
 # magnit-promo
- server side for project with promo codes in magnit shops
+ server side for project with promo codes in magnit shops.
+ base url: https://magnit-server.000webhostapp.com/
 
 * All queries send throught POST method.
 * *The result is also an object*, its content is in the content field
