@@ -16,7 +16,7 @@
                 ':range_end' => $range * 10000 + 9999
               ])) == 0) {
 
-              $cards = Card::generate($range, 100);
+              $cards = Card::generate($range, 1001);
 
               foreach ($cards as $value) {
 
