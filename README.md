@@ -1,7 +1,7 @@
 # magnit-promo
  server side for project with promo codes in magnit shops
 
-* All queries send throught post method.
+* All queries send throught POST method.
 * *The result is also an object*, its content is in the content field
 ### result object
 * fields: message(string), isError(boolean), content(array)
