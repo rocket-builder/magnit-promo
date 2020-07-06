@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="js/main-test.js" charset="utf-8"></script>
 
-    <button onclick="getQR(11)">TEST</button>
+    <button onclick="generate(123456789999)">TEST</button>
 
     <img src="" id="qr"></img>
   </body>

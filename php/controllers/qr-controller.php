@@ -10,11 +10,11 @@
       $card = R::findOne('card', 'id = ?', [ $id ]);
       if($card != null) {
 
-        if($card->is_used == false) {
+        if($card->use_date == NULL) {
 
           $url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$card->value;
 
-          $card->is_used = true;
+          $card->use_date = date('Y-m-d');
           R::store($card);
 
           echo json_encode(new Response('Success', false, [ 'url' => $url ]));

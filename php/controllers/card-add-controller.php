@@ -16,13 +16,14 @@
                 ':range_end' => $range * 10000 + 9999
               ])) == 0) {
 
-              $cards = Card::generate($range, 1000);
+              $cards = Card::generate($range, 100);
 
               foreach ($cards as $value) {
 
                 $card = R::dispense('card');
                 $card->value = $value;
                 $card->region = $region;
+                $card->upload_date = date('Y-m-d');
                 R::store($card);
               }
 
