@@ -26,6 +26,7 @@ this method can only be called after login
 * result: cards(object array)
 
 ## get qr code
+field id is a card id,
 * adress: /php/controllers/qr-controller.php
 * arguments: id(int)
 * result: url(string)
