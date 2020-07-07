@@ -85,3 +85,83 @@ function getQR(id) {
     }
   });
 }
+
+function getCards(range) {
+  $.ajax({
+    url:"php/controllers/card-get-controller.php",
+    type:"POST",
+    data: {range: range},
+    success: function(response) {
+      console.log(response);
+      response = $.parseJSON(response);
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function addRegion(region) {
+  $.ajax({
+    url:"php/controllers/region-add-controller.php",
+    type:"POST",
+    data: {region: region},
+    success: function(response) {
+      console.log(response);
+      response = $.parseJSON(response);
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function deleteRegion(region) {
+  $.ajax({
+    url:"php/controllers/region-delete-controller.php",
+    type:"POST",
+    data: {region: region},
+    success: function(response) {
+      console.log(response);
+      response = $.parseJSON(response);
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function getRanges() {
+  $.ajax({
+    url:"php/controllers/range-get-controller.php",
+    type:"POST",
+    data: {},
+    success: function(response) {
+      console.log(response);
+      response = $.parseJSON(response);
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function deleteRanges(range) {
+  $.ajax({
+    url:"php/controllers/range-delete-controller.php",
+    type:"POST",
+    data: {range: range},
+    success: function(response) {
+      console.log(response);
+      response = $.parseJSON(response);
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}

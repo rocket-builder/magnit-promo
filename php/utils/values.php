@@ -7,4 +7,9 @@
     } else
         throw new Exception('Not Integer value.');
   }
+
+  function truncate( $number, $prec)
+  {
+    return bccomp( $number, 0, 10 ) == 0 ? $number : round( $number - pow( 0.1, bcadd(   $prec, 1 ) ) * 5, $prec );
+  }
 ?>
