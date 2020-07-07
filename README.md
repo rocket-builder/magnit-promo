@@ -21,15 +21,35 @@
 * adress: /php/controllers/region-get-controller.php
 * arguments: none
 * result: regions(object array)
+## add regions
+* adress: /php/controllers/region-add-controller.php
+* arguments: region(string)
+* result: inserted region id(int)
+## delete regions
+* adress: /php/controllers/region-delete-controller.php
+* arguments: region(string)
+* result: successful message from response object
 
-## generate cards
+## get all ranges
+* adress: /php/controllers/range-get-controller.php
+* arguments: none
+* result: ranges(object array)
+## get cards from single range
+* adress: /php/controllers/card-get-controller.php
+* arguments: range(int, only 12 numbers length)
+* result: cards(array)
+## generate cards from range
 this method can only be called after login
 * adress: /php/controllers/card-add-controller.php
 * arguments: range(int, only 12 numbers length)
 * result: cards(int array), region(object)
+## delete cards with range
+* adress: /php/controllers/range-delete-controller.php
+* arguments: range(int, only 12 numbers length)
+* result: successful message from response object
 
 ## get qr code
-field id is a card id,
+field id is a card id
 * adress: /php/controllers/qr-controller.php
 * arguments: id(int)
 * result: url(string)
