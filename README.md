@@ -4,51 +4,56 @@
 
 * All queries send throught POST method.
 * *The result is also an object*, its content is in the content field
-### result object
+#### result object
 * fields: message(string), isError(boolean), content(array)
 
-## login
+## authorization
+### login
 * adress: /php/controllers/login-controller.php
 * arguments: login(string), password(string)
 * result: user(object)
 
-## sign in
+### sign in
 * adress: /php/controllers/signin-controller.php
 * arguments: login(string), password(string), region(string)
 * result: user(object)
 
-## get regions
+## regions
+### get regions
 * adress: /php/controllers/region-get-controller.php
 * arguments: none
 * result: regions(object array)
-## add regions
+### add regions
 * adress: /php/controllers/region-add-controller.php
 * arguments: region(string)
 * result: inserted region id(int)
-## delete regions
+### delete regions
 * adress: /php/controllers/region-delete-controller.php
 * arguments: region(string)
 * result: successful message from response object
 
-## get all ranges
+## ranges
+### get all ranges
 * adress: /php/controllers/range-get-controller.php
 * arguments: none
 * result: ranges(object array)
-## get cards from single range
+### delete range
+* adress: /php/controllers/range-delete-controller.php
+* arguments: range(int, only 12 numbers length)
+* result: successful message from response object
+## cards
+### get cards from single range
 * adress: /php/controllers/card-get-controller.php
 * arguments: range(int, only 12 numbers length)
 * result: cards(array)
-## generate cards from range
+### generate cards from range
 this method can only be called after login
 * adress: /php/controllers/card-add-controller.php
 * arguments: range(int, only 12 numbers length)
 * result: cards(int array), region(object)
-## delete cards with range
-* adress: /php/controllers/range-delete-controller.php
-* arguments: range(int, only 12 numbers length)
-* result: successful message from response object
 
-## get qr code
+## QR codes
+### get qr code
 field id is a card id
 * adress: /php/controllers/qr-controller.php
 * arguments: id(int)
