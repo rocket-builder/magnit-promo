@@ -60,7 +60,7 @@ field id is a card id
 * result: url(string), card(object)
 
 ## promo codes
-### add working promo code
+### add working promo code for telegram bot
 * adress: /php/controllers/promo-add-controller.php
 * arguments: card_id(int), balance(decimal)
 * result: successful message from response object
