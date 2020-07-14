@@ -14,10 +14,7 @@
 
           $url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$card->value;
 
-          $card->use_date = date('Y-m-d');
-          R::store($card);
-
-          echo json_encode(new Response('Success', false, [ 'url' => $url ]));
+          echo json_encode(new Response('Success', false, [ 'url' => $url, 'card' => $card ]));
         } else {
 
           echo json_encode(new Response("This card already used :(", true));

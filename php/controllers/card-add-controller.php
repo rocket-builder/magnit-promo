@@ -23,7 +23,7 @@
                 $card = R::dispense('card');
                 $card->value = $value;
                 $card->region = $region;
-                $card->upload_date = date('Y-m-d');
+                $card->upd_date = date('Y-m-d');
                 R::store($card);
               }
 
