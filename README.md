@@ -59,3 +59,9 @@ field id is a card id
 * arguments: id(int)
 * result: url(string)
 
+##promo codes
+### add working promo code
+* adress: /php/controllers/promo-add-controller.php
+* arguments: card_id(int), balance(decimal)
+* result: successful message from response object
+
