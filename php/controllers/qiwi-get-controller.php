@@ -1,5 +1,4 @@
 <?php
-require '../utils/values.php';
 require '../models/response.php';
 require '../connection.php';
 

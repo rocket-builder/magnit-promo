@@ -18,6 +18,7 @@
 
           setcookie ("login", $login);
           setcookie("password", $hash);
+          setcookie("role", $user->role);
           setcookie("region_id", $user->region->id);
 
           echo json_encode(new Response("Success", false, [ $user ]));

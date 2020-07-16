@@ -8,6 +8,7 @@
     <script src="js/main-test.js" charset="utf-8"></script>
 
     <button onclick="login('login', 'password')">TEST login</button>
+    <button onclick="signin('login', 'password', 'Санкт-Петербург')">TEST reg</button>
     <button onclick="logout()">TEST logout</button>
     <button onclick="generate(123456789992)">TEST generate range</button>
     <button onclick="deleteRanges(123456789992)">TEST delete range</button>

@@ -1,5 +1,4 @@
 <?php
-require '../utils/values.php';
 require '../models/response.php';
 require '../connection.php';
 
@@ -11,12 +10,22 @@ if (
 
   //TODO valid qiwi wallet number and token
 
-  $qiwi = R::dispense('qiwi');
-  $qiwi->number = $_POST['number'];
-  $qiwi->token = $_POST['token'];
+  if($_COOKIE['role'] == 'admin') {
 
-  R::store($qiwi);
+    $qiwi = R::dispense('qiwi');
+    $qiwi->number = $_POST['number'];
+    $qiwi->token = $_POST['token'];
 
-  echo json_encode(new Response("Success :)", false, [ 'qiwi' => $qiwi ]));
+    R::store($qiwi);
+
+    echo json_encode(new Response("Success :)", false, [ 'qiwi' => $qiwi ]));
+  } else {
+
+    echo json_encode(new Response("Access denied :(", true));
+  }
+
+} else {
+
+  echo json_encode(new Response("Not enought arguments :(", true));
 }
 ?>

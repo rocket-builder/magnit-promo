@@ -21,12 +21,14 @@
           $user = R::dispense('user');
           $user->login = $login;
           $user->password = $hash;
+          $user->role = R::findOne('user', " role = 'super' ") == null? 'super' : 'user';
           $user->region = $region;
 
           R::store($user);
 
           setcookie ("login", $login);
           setcookie("password", $hash);
+          setcookie("role", 'user');
           setcookie("region_id", $user->region->id);
 
           echo json_encode(new Response("Success", false, [ $user ]));
