@@ -80,3 +80,15 @@ when registering the first user, it is automatically assigned the role of super 
 * adress: /php/controllers/admin-get-controller.php
 * arguments: none
 * result: admins(object array)
+
+## QIWI integration
+methods for manage qiwi wallets
+*for recive payments from customers use only last added wallet*
+### get last wallet
+* adress: /php/controllers/qiwi-get-controller.php
+* arguments: none
+* result: qiwi(object)
+### set new current wallet
+* adress: /php/controllers/qiwi-add-controller.php
+* arguments: number(int), token(string)
+* result: qiwi(object)
