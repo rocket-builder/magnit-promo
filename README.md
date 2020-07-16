@@ -65,3 +65,18 @@ field id is a card id
 * arguments: card_id(int), balance(decimal)
 * result: successful message from response object
 
+## administration
+when registering the first user, it is automatically assigned the role of super admin, which has the right to assign and remove other administrators
+*only super admin can use this methods*
+### add new admin
+* adress: /php/controllers/admin-add-controller.php
+* arguments: login(string), password(string), region_id(int)
+* result: successful message from response object
+### delete admin
+* adress: /php/controllers/admin-delete-controller.php
+* arguments: id(int)
+* result: successful message from response object
+### get all admins
+* adress: /php/controllers/admin-get-controller.php
+* arguments: none
+* result: admins(object array)
