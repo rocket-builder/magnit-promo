@@ -2,7 +2,6 @@
 require '../models/response.php';
 require '../connection.php';
 
-
 if (
   isset($_POST['number']) &&
   isset($_POST['token'])
