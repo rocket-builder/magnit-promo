@@ -4,7 +4,8 @@ require '../connection.php';
 
 if (
   isset($_POST['number']) &&
-  isset($_POST['token'])
+  isset($_POST['token']) &&
+  isset($_POST['secret'])
 ) {
 
   //TODO valid qiwi wallet number and token
@@ -14,6 +15,7 @@ if (
     $qiwi = R::dispense('qiwi');
     $qiwi->number = $_POST['number'];
     $qiwi->token = $_POST['token'];
+    $qiwi->secret = $_POST['secret'];
 
     R::store($qiwi);
 
