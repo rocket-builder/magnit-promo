@@ -65,6 +65,12 @@ field id is a card id
 * arguments: card_id(int), balance(decimal)
 * result: successful message from response object
 
+## orders
+### get all orders in desc order
+* adress: /php/controllers/orders-get-controller.php
+* arguments: none
+* result: orders(object array)
+
 ## administration
 when registering the first user, it is automatically assigned the role of super admin, which has the right to assign and remove other administrators
 *only super admin can use this methods*
