@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 16 2020 г., 21:28
+-- Время создания: Июл 21 2020 г., 03:28
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.1.32
 
@@ -2061,7 +2061,8 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`id`, `telegram_id`, `balance`) VALUES
 (1, 1213322, '12.23'),
 (2, 1213322, '12.23'),
-(4, 920818350, '97700.00');
+(4, 920818350, '96735.00'),
+(5, 1064068627, '0.00');
 
 -- --------------------------------------------------------
 
@@ -2074,18 +2075,32 @@ CREATE TABLE `orders` (
   `date` date DEFAULT NULL,
   `promo_id` int(11) UNSIGNED DEFAULT NULL,
   `customer_id` int(11) UNSIGNED DEFAULT NULL,
-  `cost` double DEFAULT NULL
+  `cost` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `amount` decimal(10,2) DEFAULT '0.00',
+  `status` varchar(191) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'WAITING',
+  `customer_id` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Дамп данных таблицы `orders`
+-- Дамп данных таблицы `payment`
 --
 
-INSERT INTO `orders` (`id`, `date`, `promo_id`, `customer_id`, `cost`) VALUES
-(4, '2020-07-16', 12, 4, 405),
-(5, '2020-07-16', 11, 4, 355),
-(6, '2020-07-16', 3, 4, 110),
-(7, '2020-07-16', 9, 4, 255);
+INSERT INTO `payment` (`id`, `amount`, `status`, `customer_id`) VALUES
+(3, '2.00', 'REJECTED', 4),
+(13, '100.00', 'WAITING', 4),
+(14, '100.00', 'WAITING', 4),
+(15, '120000.00', 'WAITING', 4),
+(16, '3000.00', 'WAITING', 4);
 
 -- --------------------------------------------------------
 
@@ -2106,18 +2121,38 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`id`, `value`, `use_date`, `balance`, `region_id`) VALUES
-(1, 1234567899999465, '2020-07-16', '200.12', 1),
+(1, 1234567899999465, NULL, '200.12', 1),
 (2, 1234567899991178, NULL, '165.12', 3),
-(3, 1234567899991179, '2020-07-16', '170.10', 2),
+(3, 1234567899991179, NULL, '170.10', 2),
 (5, 1234567899999500, NULL, '160.20', 1),
-(6, 1234567899999600, '2020-07-16', '200.20', 1),
+(6, 1234567899999600, NULL, '200.20', 1),
 (7, 1234567899999700, NULL, '300.20', 1),
 (8, 1234567899999800, NULL, '400.20', 1),
-(9, 1234567899999900, '2020-07-16', '500.20', 1),
+(9, 1234567899999900, NULL, '500.20', 1),
 (10, 1234567900000000, NULL, '600.20', 1),
-(11, 1234567900000100, '2020-07-16', '730.20', 1),
-(12, 1234567900000200, '2020-07-16', '812.20', 1),
-(13, 1234567900000300, '2020-07-16', '959.20', 1);
+(11, 1234567900000100, NULL, '730.20', 1),
+(12, 1234567900000200, NULL, '812.20', 1),
+(13, 1234567900000300, NULL, '959.20', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `qiwi`
+--
+
+CREATE TABLE `qiwi` (
+  `id` int(11) NOT NULL,
+  `number` bigint(20) NOT NULL,
+  `token` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `qiwi`
+--
+
+INSERT INTO `qiwi` (`id`, `number`, `token`, `secret`) VALUES
+(1, 79951306961, '48e7qUxn9T7RyYE1MVZswX1FRSbE6iyCj2gCRwwF3Dnh5XrasNTx3BGPiMsyXQFNKQhvukniQG8RTVhYm3iPuETksMCY92q4iscgGNHQ7TXhxt3V4p4adLxJzFX3EA7XDfFZiThX9EfgKxoNVofFzKXsd9z9CqRh3EsP68XnCbtqDgH9erSq6hRaGhCqv', 'eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6Im5jeHVwcy0wMCIsInVzZXJfaWQiOiI3OTk1MTMwNjk2MSIsInNlY3JldCI6ImQzODEzMGIxNWI3YzBiYjE1Y2RjYzcwNmU3YWJiMjllMWE2OWNhODI0NDc3YTZlNWU1ODU1NDZkNWYzYTQzMWMifX0=');
 
 -- --------------------------------------------------------
 
@@ -2159,7 +2194,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `login`, `password`, `role`, `region_id`) VALUES
 (1, 'test', 'test', 'user', 1),
-(2, 'vasya', '$1$MNhP5iCx$zFsKVnD4g/4SGh36/UXMv.', 'user', 1),
+(2, 'vasya', '$1$MNhP5iCx$zFsKVnD4g/4SGh36/UXMv.', 'admin', 1),
 (3, 'test1', '$1$2B8kvnZY$iv1XUPvjkXjbMqFlYU/tS.', 'user', 1),
 (4, 'login', '$1$UfLSAO6i$Wu5KC0iAZq6hpknxdw9iJ0', 'super', 1);
 
@@ -2189,11 +2224,24 @@ ALTER TABLE `orders`
   ADD KEY `index_foreignkey_orders_promo` (`promo_id`);
 
 --
+-- Индексы таблицы `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_foreignkey_payment_customer` (`customer_id`);
+
+--
 -- Индексы таблицы `promo`
 --
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `index_foreignkey_promo_region` (`region_id`);
+
+--
+-- Индексы таблицы `qiwi`
+--
+ALTER TABLE `qiwi`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `region`
@@ -2222,19 +2270,31 @@ ALTER TABLE `card`
 -- AUTO_INCREMENT для таблицы `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `promo`
 --
 ALTER TABLE `promo`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `qiwi`
+--
+ALTER TABLE `qiwi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `region`
@@ -2264,6 +2324,12 @@ ALTER TABLE `card`
 ALTER TABLE `orders`
   ADD CONSTRAINT `c_fk_orders_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `c_fk_orders_promo_id` FOREIGN KEY (`promo_id`) REFERENCES `promo` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
+-- Ограничения внешнего ключа таблицы `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `c_fk_payment_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Ограничения внешнего ключа таблицы `promo`
